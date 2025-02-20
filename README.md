@@ -10,7 +10,7 @@
 
 # Componentes y conectores - Parte I.
 
-Antes de realizar este ejercicio, se nos pidio realizar un ejercicio introductorio al manejo de Spring y la configuración basada en anotaciones el cual se encuentra ya resulto en el siguiente repositorio externo el cual se encuentra [*Aqui*](https://github.com/AndresSu2342/ARSW-TallerIntroductorioSpring) o en el siguiente direccionamiento:
+Antes de realizar este ejercicio, se nos pidio realizar un ejercicio introductorio al manejo de Spring y la configuración basada en anotaciones el cual se encuentra ya resulto en el siguiente repositorio externo [*Aqui*](https://github.com/AndresSu2342/ARSW-TallerIntroductorioSpring) o en el siguiente direccionamiento:
 
 https://github.com/AndresSu2342/ARSW-TallerIntroductorioSpring
 
