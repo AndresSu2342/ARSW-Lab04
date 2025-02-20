@@ -21,8 +21,14 @@ En este ejercicio se va a construír un modelo de clases para la capa lógica de
 	Lo anterior requiere:
 
 	* Agregar las dependencias de Spring.
+
+	Dentro de nuestro archivo pom.xml, tenemos agregadas las dependencias necesarias de Spring
+
+	![Image](https://github.com/user-attachments/assets/471676a7-d27d-4654-81f7-26bbca1f345d)
+
 	* Agregar la configuración de Spring.
 	* Configurar la aplicación -mediante anotaciones- para que el esquema de persistencia sea inyectado al momento de ser creado el bean 'BlueprintServices'.
+
 
 
 2. Complete los operaciones getBluePrint() y getBlueprintsByAuthor(). Implemente todo lo requerido de las capas inferiores (por ahora, el esquema de persistencia disponible 'InMemoryBlueprintPersistence') agregando las pruebas correspondientes en 'InMemoryPersistenceTest'.
