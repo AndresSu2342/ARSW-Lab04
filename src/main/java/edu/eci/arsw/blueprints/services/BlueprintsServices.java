@@ -26,7 +26,7 @@ public class BlueprintsServices {
     BlueprintsPersistence bpp=null;
 
     @Autowired
-    @Qualifier("redundancyFilter")  // Values "subsamplingFilter" or "redundancyFilter"
+    @Qualifier("subsamplingFilter")  // Values: "subsamplingFilter" and "redundancyFilter"
     private BlueprintFilter blueprintFilter;
     
     public void addNewBlueprint(Blueprint bp) throws BlueprintPersistenceException {
@@ -34,7 +34,7 @@ public class BlueprintsServices {
     }
     
     public Set<Blueprint> getAllBlueprints() throws BlueprintNotFoundException{
-        // return bpp.getAllBlueprints();
+        // return bpp.getAllBlueprints();      retorno sin filtro
         return bpp.getAllBlueprints().stream()
                 .map(blueprintFilter::filter)
                 .collect(Collectors.toSet());
@@ -52,8 +52,8 @@ public class BlueprintsServices {
         if (bp == null) {
             throw new BlueprintNotFoundException("Blueprint not found.");
         }
-        return bp;
-        //return blueprintFilter.filter(bp);
+        // return bp;      retorno sin filtro
+        return blueprintFilter.filter(bp);
     }
     
     /**
@@ -67,10 +67,10 @@ public class BlueprintsServices {
         if (blueprints == null || blueprints.isEmpty()) {
             throw new BlueprintNotFoundException("No blueprints found for author: " + author);
         }
-        return blueprints;
-        // return blueprints.stream()
-        //        .map(blueprintFilter::filter)
-        //        .collect(Collectors.toSet());
+        // return blueprints;      retorno sin filtro
+        return blueprints.stream()
+                .map(blueprintFilter::filter)
+                .collect(Collectors.toSet());
     }
     
 }

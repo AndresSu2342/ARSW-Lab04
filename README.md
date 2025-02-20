@@ -2,14 +2,21 @@
 
 ## Arquitecturas de Software
 
+---
+
+## Integrantes: Joan S. Acevedo Aguilar - Cesar A. Borray Suarez
+
+---
+
 # Componentes y conectores - Parte I.
 
-El ejercicio se debe traer terminado para el siguiente laboratorio (Parte II).
+Antes de realizar este ejercicio, se nos pidio realizar un ejercicio introductorio al manejo de Spring y la configuración basada en anotaciones el cual se encuentra ya resulto en el siguiente repositorio externo el cual se encuentra [*Aqui*](https://github.com/AndresSu2342/ARSW-TallerIntroductorioSpring) o en el siguiente direccionamiento:
+
+https://github.com/AndresSu2342/ARSW-TallerIntroductorioSpring
+
+---
 
 #### Middleware- gestión de planos.
-
-
-## Antes de hacer este ejercicio, realice [el ejercicio introductorio al manejo de Spring y la configuración basada en anotaciones](https://github.com/ARSW-ECI/Spring_LightweightCont_Annotation-DI_Example).
 
 En este ejercicio se va a construír un modelo de clases para la capa lógica de una aplicación que permita gestionar planos arquitectónicos de una prestigiosa compañia de diseño. 
 
@@ -74,6 +81,41 @@ En este ejercicio se va a construír un modelo de clases para la capa lógica de
 
 4. Se quiere que las operaciones de consulta de planos realicen un proceso de filtrado, antes de retornar los planos consultados. Dichos filtros lo que buscan es reducir el tamaño de los planos, removiendo datos redundantes o simplemente submuestrando, antes de retornarlos. Ajuste la aplicación (agregando las abstracciones e implementaciones que considere) para que a la clase BlueprintServices se le inyecte uno de dos posibles 'filtros' (o eventuales futuros filtros). No se contempla el uso de más de uno a la vez:
 	* (A) Filtrado de redundancias: suprime del plano los puntos consecutivos que sean repetidos.
-	* (B) Filtrado de submuestreo: suprime 1 de cada 2 puntos del plano, de manera intercalada.
+
+        Para eliminar puntos repetidos consecutivos en un plano, se creó la clase RedundancyFilter, la cual implementa la interfaz BlueprintFilter.
+
+        Primero, se añadió el método filter() en la capa de servicio (BlueprintServices), para que aplique el filtro antes de devolver los resultados.
+
+        ![Image](https://github.com/user-attachments/assets/57dfc4b1-7d69-4b63-b4b7-5937b5524755)
+
+        Luego, se definió el método en la interfaz BlueprintFilter, permitiendo que diferentes filtros puedan ser utilizados en la aplicación.
+
+        ![Image](https://github.com/user-attachments/assets/956f002d-b46b-4a82-9a89-b3a02c36435a)
+
+        Por último, se implementó el filtro en RedundancyFilter, eliminando puntos consecutivos duplicados al procesar los Blueprints
+
+        ![Image](https://github.com/user-attachments/assets/959b4a09-fb35-4f25-b517-322c6de477d5)
+
+    * (B) Filtrado de submuestreo: suprime 1 de cada 2 puntos del plano, de manera intercalada.
+
+        Se creó la clase SubsamplingFilter, que selecciona solo la mitad de los puntos de un plano para simplificar la representación.
+
+	    Se modificó BlueprintServices para integrar este nuevo filtro en la lógica de la aplicación.
+
+        ![Image](https://github.com/user-attachments/assets/adc96376-890c-4b5b-a104-6ad086ec72aa)
+
+        Después, se agregó la implementación en SubsamplingFilter, eliminando la mitad de los puntos de cada blueprint.
+
+        ![Image](https://github.com/user-attachments/assets/264cbbea-4ba4-4a89-b828-92775648acb4)
 
 5. Agrege las pruebas correspondientes a cada uno de estos filtros, y pruebe su funcionamiento en el programa de prueba, comprobando que sólo cambiando la posición de las anotaciones -sin cambiar nada más-, el programa retorne los planos filtrados de la manera (A) o de la manera (B). 
+
+	Se agregaron pruebas en BlueprintFilterTest para validar que el filtro de redundancia elimine correctamente los puntos redundantes y que el filtro de submuestreo elimine correctamente los puntos.
+
+	![Image](https://github.com/user-attachments/assets/6efabdd7-713b-46c5-8946-43926e45d9df)
+
+	![Image](https://github.com/user-attachments/assets/cf004831-d04e-4a38-92ed-40b8a2f07f92)
+
+	La ejecucion de ambas pruebas nos sale como correctas
+
+	![Image](https://github.com/user-attachments/assets/5b0d43c6-92fc-4742-808a-c68d8d203934)
