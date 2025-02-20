@@ -6,14 +6,13 @@
 package edu.eci.arsw.blueprints.services;
 
 import edu.eci.arsw.blueprints.model.Blueprint;
-import edu.eci.arsw.blueprints.model.Point;
 import edu.eci.arsw.blueprints.persistence.BlueprintNotFoundException;
 import edu.eci.arsw.blueprints.persistence.BlueprintPersistenceException;
 import edu.eci.arsw.blueprints.persistence.BlueprintsPersistence;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.stream.Collectors;
 import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 /**
@@ -25,13 +24,20 @@ public class BlueprintsServices {
    
     @Autowired
     BlueprintsPersistence bpp=null;
+
+    @Autowired
+    @Qualifier("redundancyFilter")  // Values "subsamplingFilter" or "redundancyFilter"
+    private BlueprintFilter blueprintFilter;
     
     public void addNewBlueprint(Blueprint bp) throws BlueprintPersistenceException {
         bpp.saveBlueprint(bp);
     }
     
     public Set<Blueprint> getAllBlueprints() throws BlueprintNotFoundException{
-        return bpp.getAllBlueprints();
+        // return bpp.getAllBlueprints();
+        return bpp.getAllBlueprints().stream()
+                .map(blueprintFilter::filter)
+                .collect(Collectors.toSet());
     }
     
     /**
@@ -47,6 +53,7 @@ public class BlueprintsServices {
             throw new BlueprintNotFoundException("Blueprint not found.");
         }
         return bp;
+        //return blueprintFilter.filter(bp);
     }
     
     /**
@@ -61,6 +68,9 @@ public class BlueprintsServices {
             throw new BlueprintNotFoundException("No blueprints found for author: " + author);
         }
         return blueprints;
+        // return blueprints.stream()
+        //        .map(blueprintFilter::filter)
+        //        .collect(Collectors.toSet());
     }
     
 }

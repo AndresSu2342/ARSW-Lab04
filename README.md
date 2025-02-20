@@ -28,7 +28,7 @@ En este ejercicio se va a construír un modelo de clases para la capa lógica de
 
 	* Agregar la configuración de Spring.
 
-	Para habilitar la configuración de Spring, debemos crear un archivo de configuración applicationContext.xml donde habilitando component scanning (<context:component-scan>) haremos que Spring buscará automáticamente en el paquete "edu.eci.arsw" las clases anotadas con @Component, @Service, @Repository y @Controller para gestionarlas como beans.
+	Para habilitar la configuración de Spring, debemos crear un archivo de configuración applicationContext.xml donde habilitando component scanning (<context:component-scan>) haremos que Spring buscará automáticamente en el paquete "edu.eci.arsw.blueprints" las clases anotadas con @Component, @Service, @Repository y @Controller para gestionarlas como beans.
 
 	![Image](https://github.com/user-attachments/assets/5e0f1076-6ac3-4085-97e6-4cea64157ac8)
 	
@@ -59,7 +59,9 @@ En este ejercicio se va a construír un modelo de clases para la capa lógica de
 	
 	![Image](https://github.com/user-attachments/assets/fbb29d7e-56d1-4b42-8b32-2c5338225c89)
 
-4. Haga un programa en el que cree (mediante Spring) una instancia de BlueprintServices, y rectifique la funcionalidad del mismo: registrar planos, consultar planos, registrar planos específicos, etc.
+   ![Image](https://github.com/user-attachments/assets/d1e5c1d1-2c71-4b25-b6c0-1083bdce8ae4)
+
+3. Haga un programa en el que cree (mediante Spring) una instancia de BlueprintServices, y rectifique la funcionalidad del mismo: registrar planos, consultar planos, registrar planos específicos, etc.
 	
 	Creamos una clase principal Main en la raiz del proyecto, al mismo nivel que model, persistence y services, el cual rectifica la funcionalidad de nuestra aplicacion.
 	
